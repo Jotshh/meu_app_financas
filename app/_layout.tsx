@@ -27,6 +27,7 @@ export default function RootLayout() {
         <Stack screenOptions={{ headerShown: false }}>
           <Stack.Screen name="(tabs)" />
           <Stack.Screen name="(auth)" />
+          <Stack.Screen name="novo-lancamento" options={{ presentation: "modal" }} />
         </Stack>
       </SQLiteProvider>
     </Suspense>
