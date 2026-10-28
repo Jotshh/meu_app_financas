@@ -229,3 +229,39 @@ export function getPaymentMethodTotals(
     params,
   );
 }
+
+export interface TransactionTotals {
+  incomeCents: number;
+  expenseCents: number;
+  balanceCents: number;
+  count: number;
+}
+
+/** Totais agregados (entradas, saídas, balanço e quantidade) respeitando os mesmos filtros de listagem. */
+export async function getTransactionTotals(
+  db: SQLiteDatabase,
+  userId: string,
+  filters: TransactionFilters = {},
+): Promise<TransactionTotals> {
+  const { sql, params } = buildWhere(userId, filters);
+  const row = await db.getFirstAsync<{
+    income_cents: number | null;
+    expense_cents: number | null;
+    total_count: number | null;
+  }>(
+    `SELECT COALESCE(SUM(CASE WHEN t.type = 'income'  THEN t.amount_cents END), 0) AS income_cents,
+            COALESCE(SUM(CASE WHEN t.type = 'expense' THEN t.amount_cents END), 0) AS expense_cents,
+            COUNT(*) AS total_count
+       FROM transactions t
+      WHERE ${sql}`,
+    params,
+  );
+  const incomeCents = row?.income_cents ?? 0;
+  const expenseCents = row?.expense_cents ?? 0;
+  return {
+    incomeCents,
+    expenseCents,
+    balanceCents: incomeCents - expenseCents,
+    count: row?.total_count ?? 0,
+  };
+}
