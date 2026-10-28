@@ -1,4 +1,4 @@
-import { Pressable, Text, ActivityIndicator, StyleSheet, ViewStyle } from "react-native";
+import { Pressable, Text, ActivityIndicator, StyleSheet } from "react-native";
 import { Colors, Typography, Spacing, Radius } from "@/src/constants/theme";
 
 // Definindo os tipos aceitos pelo componente (TypeScript)
@@ -28,13 +28,20 @@ export default function Button({
 }: ButtonProps) {
   const isDisabled = disabled || loading;
 
+  const spinnerColor =
+    variant === "primary"
+      ? Colors.white
+      : variant === "danger"
+      ? Colors.danger.text
+      : Colors.textPrimary;
+
   return (
     <Pressable
       onPress={onPress}
       disabled={isDisabled}
       style={({ pressed }) => [
         styles.base,
-        styles[variant],      // Aplica o estilo da variante
+        styles[variant],        // Aplica o estilo da variante
         styles[`size_${size}`], // Aplica o tamanho
         fullWidth && styles.fullWidth,
         pressed && !isDisabled && styles.pressed,
@@ -44,7 +51,7 @@ export default function Button({
       {loading ? (
         <ActivityIndicator
           size="small"
-          color={variant === "primary" ? Colors.white : Colors.primary[600]}
+          color={spinnerColor}
         />
       ) : (
         <>
@@ -64,8 +71,8 @@ const styles = StyleSheet.create({
     gap: Spacing[2], borderRadius: Radius.lg, borderWidth: 1.5,
   },
   // Variantes
-  primary:  { backgroundColor: Colors.primary[600], borderColor: Colors.primary[600] },
-  outline:  { backgroundColor: "transparent", borderColor: Colors.primary[600] },
+  primary:  { backgroundColor: Colors.button.primary, borderColor: Colors.button.primary },
+  outline:  { backgroundColor: "transparent", borderColor: Colors.border },
   ghost:    { backgroundColor: "transparent", borderColor: "transparent" },
   danger:   { backgroundColor: Colors.danger.bg, borderColor: Colors.danger.border },
   // Tamanhos
@@ -79,8 +86,8 @@ const styles = StyleSheet.create({
   // Labels
   label:         { fontWeight: Typography.fontWeight.semibold },
   label_primary: { color: Colors.white },
-  label_outline: { color: Colors.primary[600] },
-  label_ghost:   { color: Colors.primary[600] },
+  label_outline: { color: Colors.textPrimary },
+  label_ghost:   { color: Colors.textPrimary },
   label_danger:  { color: Colors.danger.text },
   labelSize_sm:  { fontSize: Typography.fontSize.sm },
   labelSize_md:  { fontSize: Typography.fontSize.md },

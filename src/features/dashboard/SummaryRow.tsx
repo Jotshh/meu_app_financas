@@ -4,14 +4,17 @@ import { formatBRL } from "@/src/lib/money";
 import type { MonthlyTotal } from "@/src/repositories/transactionRepository";
 
 export default function SummaryRow({ current }: { current: MonthlyTotal }) {
+  const positive = current.balanceCents > 0;
   const negative = current.balanceCents < 0;
+  const balanceColor = negative ? Colors.danger.text : positive ? Colors.success.text : Colors.textPrimary;
+
   return (
     <View style={styles.card}>
       <Cell label="Receitas" value={formatBRL(current.incomeCents)} color={Colors.success.text} />
       <View style={styles.divider} />
       <Cell label="Despesas" value={formatBRL(current.expenseCents)} color={Colors.danger.text} />
       <View style={styles.divider} />
-      <Cell label="Saldo" value={formatBRL(current.balanceCents)} color={negative ? Colors.danger.text : Colors.textPrimary} />
+      <Cell label="Saldo" value={formatBRL(current.balanceCents)} color={balanceColor} />
     </View>
   );
 }

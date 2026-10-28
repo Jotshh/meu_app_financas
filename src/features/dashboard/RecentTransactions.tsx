@@ -12,7 +12,7 @@ export default function RecentTransactions({ items }: { items: TransactionListIt
         const isIncome = t.type === "income";
         const isTransfer = t.type === "transfer";
         const sign = isTransfer ? "" : isIncome ? "+ " : "− ";
-        const color = isTransfer ? Colors.textSecondary : isIncome ? Colors.success.text : Colors.danger.text;
+        const color = isTransfer ? Colors.info.text : isIncome ? Colors.success.text : Colors.danger.text;
         const detail = isTransfer
           ? `${t.account_name} → ${t.to_account_name}`
           : [t.category_name, t.payment_method ? PAYMENT_LABEL[t.payment_method] : null].filter(Boolean).join(" · ");
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   card: { backgroundColor: Colors.surface, borderRadius: Radius.xl, padding: Spacing[4], borderWidth: 1, borderColor: Colors.border },
   title: { fontSize: Typography.fontSize.md, fontWeight: Typography.fontWeight.semibold, color: Colors.textPrimary, marginBottom: Spacing[2] },
   row: { flexDirection: "row", alignItems: "center", gap: Spacing[3], paddingVertical: Spacing[3] },
-  rowBorder: { borderTopWidth: 1, borderTopColor: Colors.primary[900] },
+  rowBorder: { borderTopWidth: 1, borderTopColor: Colors.border },
   desc: { fontSize: Typography.fontSize.base, fontWeight: Typography.fontWeight.medium, color: Colors.textPrimary },
   detail: { fontSize: Typography.fontSize.sm, color: Colors.textSecondary },
   amount: { fontSize: Typography.fontSize.base, fontWeight: Typography.fontWeight.semibold },
