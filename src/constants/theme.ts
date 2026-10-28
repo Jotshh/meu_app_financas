@@ -1,46 +1,133 @@
-export const Colors = {
+export const lightColors = {
   primary: {
-    100:  "#1B1C1C",
-    200: "#303031",
-    300: "#464747",
-    400: "#5E5E5E",
-    500: "#777777",
-    600: "#919090",
-    700: "#ACABAB",
-    800: "#C7C6C6",
-    900: "#E4E2E2",
-    1000: "#F2F0F0",
+    100: "#111111",
+    200: "#2A2A2D",
+    300: "#404044",
+    400: "#5B5C5D",
+    500: "#76777A",
+    600: "#919296",
+    700: "#ADAEB2",
+    800: "#C8C9CD",
+    900: "#E4E5E8",
+    1000: "#F2F3F5",
   },
   secondary: {
-    100:  "#1A1C1C",
-    200: "#2F3131",
-    300: "#464747",
-    400: "#5E5E5F",
-    500: "#777777",
-    600: "#909191",
-    700: "#ACABAB",
-    800: "#C7C6C6",
-    900: "#E3E2E2",
-    1000: "#F1F0F0",
+    100: "#111111",
+    200: "#26262A",
+    300: "#3F3F42",
+    400: "#5B5C5D",
+    500: "#76777A",
+    600: "#919296",
+    700: "#ADAEB2",
+    800: "#C8C9CD",
+    900: "#E4E5E8",
+    1000: "#F2F3F5",
   },
 
   button: {
-    primary: "#545454", secondary: "#EBE7E7",
+    primary: "#111111",
+    secondary: "#E9EAEE",
   },
 
-  success: { bg: "#d1fae5", text: "#065f46", border: "#34d399" },
-  warning: { bg: "#fef3c7", text: "#92400e", border: "#fbbf24" },
-  danger:  { bg: "#fee2e2", text: "#991b1b", border: "#f87171" },
-  info:    { bg: "#dbeafe", text: "#1e40af", border: "#60a5fa" },
+  // Semânticos: border = cor pura PRD, text = versão escura para WCAG AA (>= 4.5:1), bg = tom claro para badges
+  success: {
+    bg: "#E8F7F0",
+    text: "#19764F",
+    border: "#22A06B",
+  },
+  warning: {
+    bg: "#FEF6E9",
+    text: "#8C5E15",
+    border: "#F5A524",
+  },
+  danger: {
+    bg: "#FDEBEC",
+    text: "#B93A3E",
+    border: "#E5484D",
+  },
+  info: {
+    bg: "#EBF2FE",
+    text: "#3262C8",
+    border: "#3E7BFA",
+  },
 
-  background: "#EFEFEF",
-  surface:    "#FFFFFF", 
-  textPrimary:   "#1C1B1B", 
-  textSecondary: "#5B5C5D", 
-  border:        "#C4C7C7",
-  white:         "#ffffff",
-  black:         "#000000",
+  background: "#F2F3F5",
+  surface: "#FFFFFF",
+  surfaceAlt: "#E9EAEE",
+  textPrimary: "#111111",
+  textSecondary: "#5B5C5D",
+  border: "#D9DADE",
+  white: "#FFFFFF",
+  black: "#000000",
 };
+
+export const darkColors = {
+  primary: {
+    100: "#F5F5F5",
+    200: "#E4E5E8",
+    300: "#C8C9CD",
+    400: "#ADAEB2",
+    500: "#919296",
+    600: "#76777A",
+    700: "#5B5C5D",
+    800: "#3F3F42",
+    900: "#26262A",
+    1000: "#121214",
+  },
+  secondary: {
+    100: "#F5F5F5",
+    200: "#E4E5E8",
+    300: "#C8C9CD",
+    400: "#ADAEB2",
+    500: "#919296",
+    600: "#76777A",
+    700: "#5B5C5D",
+    800: "#3F3F42",
+    900: "#26262A",
+    1000: "#121214",
+  },
+
+  button: {
+    primary: "#F5F5F5",
+    secondary: "#26262A",
+  },
+
+  // Semânticos dark: border = cor pura PRD, text = tom claro para contraste sobre fundo escuro, bg = tom escuro para badges
+  success: {
+    bg: "#173326",
+    text: "#4ADE80",
+    border: "#22A06B",
+  },
+  warning: {
+    bg: "#382813",
+    text: "#FBBF24",
+    border: "#F5A524",
+  },
+  danger: {
+    bg: "#3B1D20",
+    text: "#F87171",
+    border: "#E5484D",
+  },
+  info: {
+    bg: "#162744",
+    text: "#60A5FA",
+    border: "#3E7BFA",
+  },
+
+  background: "#121214",
+  surface: "#1C1C1F",
+  surfaceAlt: "#26262A",
+  textPrimary: "#F5F5F5",
+  textSecondary: "#A0A0A5",
+  border: "#2E2E32",
+  white: "#FFFFFF",
+  black: "#000000",
+};
+
+export type ThemeColors = typeof lightColors;
+
+// Por enquanto exporta lightColors diretamente (preparado para alternância futura)
+export const Colors: ThemeColors = lightColors;
 
 export const Typography = {
   fontSize: {
