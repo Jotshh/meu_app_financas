@@ -1,4 +1,5 @@
 import type { SQLiteDatabase } from "expo-sqlite";
+import { Colors } from "@/src/constants/theme";
 import { createAccount, createCategory, createSpreadsheet } from "@/src/repositories/catalogRepository";
 import { insertTransaction } from "@/src/repositories/transactionRepository";
 import { lastNMonths } from "@/src/lib/dates";
@@ -12,11 +13,11 @@ export async function seedDemoData(db: SQLiteDatabase, userId: string): Promise<
   const sheet = await createSpreadsheet(db, userId, { name: "Geral" });
   const nubank = await createAccount(db, userId, { name: "Nubank", type: "checking" });
   const carteira = await createAccount(db, userId, { name: "Carteira", type: "cash" });
-  const salario = await createCategory(db, userId, { name: "Salário", kind: "income" });
-  const moradia = await createCategory(db, userId, { name: "Moradia", kind: "expense", color: "#5E5E5E" });
-  const mercado = await createCategory(db, userId, { name: "Mercado", kind: "expense", color: "#34d399" });
-  const transporte = await createCategory(db, userId, { name: "Transporte", kind: "expense", color: "#60a5fa" });
-  const lazer = await createCategory(db, userId, { name: "Lazer", kind: "expense", color: "#fbbf24" });
+  const salario = await createCategory(db, userId, { name: "Salário", kind: "income", color: Colors.success.border });
+  const moradia = await createCategory(db, userId, { name: "Moradia", kind: "expense", color: Colors.primary[400] });
+  const mercado = await createCategory(db, userId, { name: "Mercado", kind: "expense", color: Colors.primary[500] });
+  const transporte = await createCategory(db, userId, { name: "Transporte", kind: "expense", color: Colors.primary[600] });
+  const lazer = await createCategory(db, userId, { name: "Lazer", kind: "expense", color: Colors.primary[700] });
 
   const months = lastNMonths(6);
   const mercadoExtra = [0, 12000, -5000, 20000, 8000, 15000];
