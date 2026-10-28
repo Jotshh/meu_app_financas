@@ -24,10 +24,10 @@ export default function RootLayout() {
   return (
     <Suspense fallback={<Loading />}>
       <SQLiteProvider databaseName={DATABASE_NAME} onInit={initDatabase} useSuspense>
-        <Stack initialRouteName="(tabs)" screenOptions={{ headerShown: false }}>
-  <Stack.Screen name="(tabs)" />
-  <Stack.Screen name="(auth)" />
-</Stack>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="(auth)" />
+        </Stack>
       </SQLiteProvider>
     </Suspense>
   );

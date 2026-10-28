@@ -6,6 +6,8 @@
     "scheme": "financas",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
+    "backgroundColor": "#F2F3F5",
+    "primaryColor": "#111111",
     "plugins": ["expo-router", "expo-sqlite"]
   }
 }
